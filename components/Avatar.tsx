@@ -4,9 +4,10 @@ import { useRef, useEffect, useState } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { OrbitControls, Environment } from "@react-three/drei"
 import * as THREE from "three"
+import { useTheme } from "next-themes"
 
 function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking: boolean }) {
-  // Refs for all facial components
+  const { theme } = useTheme()
   const headRef = useRef<THREE.Group>(null)
   const leftEyeRef = useRef<THREE.Mesh>(null)
   const rightEyeRef = useRef<THREE.Mesh>(null)
@@ -15,30 +16,54 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
   const rightEyebrowRef = useRef<THREE.Mesh>(null)
   const { mouse } = useThree()
 
-  // Emotion configuration
+  // Theme-based colors
+  const themeColors = {
+    light: {
+      face: "#e2e8f0",
+      body: "#cbd5e1",
+      eyebrow: "#475569",
+      ambientIntensity: 0.8,
+      pointIntensity: 1.2,
+      pointColor: "#f5f5f5",
+      envPreset: "city"
+    },
+    dark: {
+      face: "#1e293b",
+      body: "#334155",
+      eyebrow: "#f8fafc",
+      ambientIntensity: 0.5,
+      pointIntensity: 1,
+      pointColor: "#ffffff",
+      envPreset: "dawn"
+    }
+  }
+
+  const currentTheme = themeColors[theme as keyof typeof themeColors] || themeColors.dark
+
+  // Expression configuration
   const emotions = {
     neutral: {
-      color: "#3b82f6",
+      color: theme === "dark" ? "#3b82f6" : "#2563eb",
       eyebrow: { left: -0.1, right: 0.1, y: 1.8 },
       mouth: { width: 1, height: 0.2 }
     },
     happy: {
-      color: "#10b981",
+      color: theme === "dark" ? "#10b981" : "#059669",
       eyebrow: { left: -0.2, right: 0.2, y: 1.75 },
       mouth: { width: 1.2, height: 0.8 }
     },
     sad: {
-      color: "#6366f1",
+      color: theme === "dark" ? "#6366f1" : "#4f46e5",
       eyebrow: { left: 0.3, right: -0.3, y: 1.85 },
       mouth: { width: 0.8, height: 0.1 }
     },
     angry: {
-      color: "#ef4444",
+      color: theme === "dark" ? "#ef4444" : "#dc2626",
       eyebrow: { left: -0.4, right: 0.4, y: 1.7 },
       mouth: { width: 0.7, height: 0.3 }
     },
     surprised: {
-      color: "#f59e0b",
+      color: theme === "dark" ? "#f59e0b" : "#d97706",
       eyebrow: { left: 0.5, right: -0.5, y: 1.9 },
       mouth: { width: 0.7, height: 1.2 }
     }
@@ -86,7 +111,7 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
     if (!headRef.current || !leftEyeRef.current || !rightEyeRef.current || 
         !mouthRef.current || !leftEyebrowRef.current || !rightEyebrowRef.current) return
 
-    // Head follows mouse with smooth movement
+    // Head follows mouse
     headRef.current.rotation.y = THREE.MathUtils.lerp(
       headRef.current.rotation.y,
       mouse.x * 0.3,
@@ -146,15 +171,14 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
 
   return (
     <group ref={headRef} position={[0, 0, 0]}>
-      {/* Head container */}
       <group>
         {/* Face screen */}
         <mesh position={[0, 1.5, 0.6]}>
           <boxGeometry args={[1.2, 0.8, 0.1]} />
           <meshStandardMaterial 
-            color="#1e293b" 
+            color={currentTheme.face} 
             metalness={0.3} 
-            roughness={0.2} 
+            roughness={theme === "dark" ? 0.2 : 0.4}
           />
         </mesh>
 
@@ -165,7 +189,7 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
           rotation={[0, 0, currentEmotion.eyebrow.left]}
         >
           <boxGeometry args={[0.3, 0.05, 0.02]} />
-          <meshStandardMaterial color="#1e293b" />
+          <meshStandardMaterial color={currentTheme.eyebrow} />
         </mesh>
         <mesh 
           ref={rightEyebrowRef} 
@@ -173,7 +197,7 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
           rotation={[0, 0, currentEmotion.eyebrow.right]}
         >
           <boxGeometry args={[0.3, 0.05, 0.02]} />
-          <meshStandardMaterial color="#1e293b" />
+          <meshStandardMaterial color={currentTheme.eyebrow} />
         </mesh>
 
         {/* Eyes */}
@@ -182,7 +206,7 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
           <meshStandardMaterial 
             color={currentEmotion.color} 
             emissive={currentEmotion.color} 
-            emissiveIntensity={2} 
+            emissiveIntensity={theme === "dark" ? 2 : 1.5}
           />
         </mesh>
         <mesh ref={rightEyeRef} position={[0.3, 1.6, 0.66]}>
@@ -190,7 +214,7 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
           <meshStandardMaterial 
             color={currentEmotion.color} 
             emissive={currentEmotion.color} 
-            emissiveIntensity={2} 
+            emissiveIntensity={theme === "dark" ? 2 : 1.5}
           />
         </mesh>
 
@@ -200,7 +224,7 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
           <meshStandardMaterial 
             color={currentEmotion.color} 
             emissive={currentEmotion.color} 
-            emissiveIntensity={1} 
+            emissiveIntensity={theme === "dark" ? 1 : 0.8}
           />
         </mesh>
 
@@ -208,9 +232,9 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
         <mesh position={[0, 0.5, 0]}>
           <boxGeometry args={[1, 1.5, 0.5]} />
           <meshStandardMaterial 
-            color="#334155" 
+            color={currentTheme.body} 
             metalness={0.2} 
-            roughness={0.3} 
+            roughness={theme === "dark" ? 0.3 : 0.5}
           />
         </mesh>
       </group>
@@ -219,13 +243,19 @@ function RobotHead({ expression, isSpeaking }: { expression: string; isSpeaking:
 }
 
 export default function Avatar({ expression = "neutral", isSpeaking = false }) {
+  const { theme } = useTheme()
+  
   return (
     <div className="w-full h-full">
       <Canvas camera={{ position: [0, 2, 5], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
+        <ambientLight intensity={theme === "dark" ? 0.5 : 0.8} />
+        <pointLight 
+          position={[10, 10, 10]} 
+          intensity={theme === "dark" ? 1 : 1.2}
+          color={theme === "dark" ? "#ffffff" : "#f5f5f5"}
+        />
+        <Environment preset={theme === "dark" ? "dawn" : "city"} />
         <RobotHead expression={expression} isSpeaking={isSpeaking} />
-        <Environment preset="dawn" />
         <OrbitControls
           enableZoom={false}
           enablePan={false}

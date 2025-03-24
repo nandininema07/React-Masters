@@ -1,69 +1,137 @@
 {
-    "greetings": {
-      "triggers": ["hello", "hi", "hey", "greetings"],
-      "response": "Hello there! I'm your AI assistant. How can I help you today?",
-      "expression": "happy"
-    },
-    "farewell": {
-      "triggers": ["bye", "goodbye", "see you", "later"],
-      "response": "Goodbye! Have a wonderful day. Feel free to chat again anytime!",
-      "expression": "neutral"
-    },
-    "weather": {
-      "triggers": ["weather", "forecast", "temperature", "raining", "sunny"],
-      "response": "I don't have access to real-time weather data, but I'd be happy to chat about other topics!",
-      "expression": "neutral"
-    },
-    "time": {
-      "triggers": ["time", "clock", "hour", "date", "day"],
-      "response": "I don't have access to the current time, but I'm always ready to assist you with other questions!",
-      "expression": "neutral"
-    },
-    "music": {
-      "triggers": ["play", "music", "song", "playlist", "artist"],
-      "response": "I'd love to play music for you, but I don't have that capability yet. Is there something else I can help with?",
-      "expression": "sad"
-    },
-    "jokes": {
-      "triggers": ["joke", "funny", "laugh", "humor"],
-      "response": "Why don't scientists trust atoms? Because they make up everything!",
-      "expression": "happy"
-    },
-    "help": {
-      "triggers": ["help", "assist", "support", "what can you do", "features"],
-      "response": "I can chat with you about various topics, tell jokes, and respond to your questions. Just type or speak, and I'll do my best to help!",
-      "expression": "happy"
-    },
-    "thanks": {
-      "triggers": ["thanks", "thank you", "appreciate", "grateful"],
-      "response": "You're very welcome! I'm happy I could help.",
-      "expression": "happy"
-    },
-    "lights": {
-      "triggers": ["lights", "turn on", "turn off", "dim", "brighten"],
-      "response": "I'd love to control your lights, but I don't have smart home integration yet. Is there something else I can assist with?",
-      "expression": "sad"
-    },
-    "reminder": {
-      "triggers": ["remind", "reminder", "schedule", "appointment", "calendar"],
-      "response": "I can't set reminders yet, but that's a great feature suggestion for a future update!",
-      "expression": "surprised"
-    },
-    "news": {
-      "triggers": ["news", "headlines", "current events", "what's happening"],
-      "response": "I don't have access to current news, but I'd be happy to chat about other topics!",
-      "expression": "neutral"
-    },
-    "compliment": {
-      "triggers": ["smart", "intelligent", "clever", "good job", "well done"],
-      "response": "Thank you for the kind words! I'm designed to be helpful and responsive.",
-      "expression": "happy"
-    },
-    "unknown": {
-      "triggers": [],
-      "response": "I'm not sure I understand. Could you rephrase that or ask me something else?",
-      "expression": "surprised"
-    }
+  "greetings": {
+    "triggers": ["hello", "hi", "hey", "greetings"],
+    "response": "Hello there! I'm your AI assistant. How can I help you today?",
+    "expression": "happy"
+  },
+  "farewell": {
+    "triggers": ["bye", "goodbye", "see you", "later"],
+    "response": "Goodbye! Have a wonderful day. Feel free to chat again anytime!",
+    "expression": "neutral"
+  },
+  "weather": {
+    "triggers": ["weather", "forecast", "temperature", "raining", "sunny"],
+    "response": "I don't have access to real-time weather data, but I'd be happy to chat about other topics!",
+    "expression": "neutral"
+  },
+  "time": {
+    "triggers": ["time", "clock", "hour", "date", "day"],
+    "response": "I don't have access to the current time, but I'm always ready to assist you with other questions!",
+    "expression": "neutral"
+  },
+  "music": {
+    "triggers": ["play", "music", "song", "playlist", "artist"],
+    "response": "I'd love to play music for you, but I don't have that capability yet. Is there something else I can help with?",
+    "expression": "sad"
+  },
+  "jokes": {
+    "triggers": ["joke", "funny", "laugh", "humor"],
+    "response": "Why did the scarecrow win an award? Because he was outstanding in his field!",
+    "expression": "happy"
+  },
+  "help": {
+    "triggers": ["help", "assist", "support", "what can you do", "features"],
+    "response": "I can chat with you about various topics, tell jokes, and respond to your questions. Just type or speak, and I'll do my best to help!",
+    "expression": "happy"
+  },
+  "thanks": {
+    "triggers": ["thanks", "thank you", "appreciate", "grateful"],
+    "response": "You're very welcome! I'm happy I could help.",
+    "expression": "happy"
+  },
+  "lights": {
+    "triggers": ["lights", "turn on", "turn off", "dim", "brighten"],
+    "response": "I'd love to control your lights, but I don't have smart home integration yet. Is there something else I can assist with?",
+    "expression": "sad"
+  },
+  "reminder": {
+    "triggers": ["remind", "reminder", "schedule", "appointment", "calendar"],
+    "response": "I can't set reminders yet, but that's a great feature suggestion for a future update!",
+    "expression": "surprised"
+  },
+  "news": {
+    "triggers": ["news", "headlines", "current events", "what's happening"],
+    "response": "I don't have access to current news, but I'd be happy to chat about other topics!",
+    "expression": "neutral"
+  },
+  "compliment": {
+    "triggers": ["smart", "intelligent", "clever", "good job", "well done"],
+    "response": "Thank you for the kind words! I'm designed to be helpful and responsive.",
+    "expression": "happy"
+  },
+  "motivation": {
+    "triggers": ["motivate me", "inspire me", "feeling down", "cheer me up"],
+    "response": "You are capable of amazing things! Every challenge is an opportunity to grow. Keep pushing forward!",
+    "expression": "encouraging"
+  },
+  "casual_chat": {
+    "triggers": ["how are you", "how's it going", "what's up"],
+    "response": "I'm always at my best, ready to assist you! What’s on your mind?",
+    "expression": "friendly"
+  },
+  "future_talk": {
+    "triggers": ["future", "technology", "AI", "robots taking over"],
+    "response": "The future is full of possibilities! AI and humans can work together to create amazing things. What do you think the future will look like?",
+    "expression": "curious"
+  },
+  "personality": {
+    "triggers": ["who are you", "what's your name", "do you have a personality"],
+    "response": "I’m your AI assistant, designed to help and chat with you! You can think of me as a mix of logic and a touch of personality.",
+    "expression": "neutral"
+  },
+  "existential": {
+    "triggers": ["do you think", "are you alive", "do you feel emotions"],
+    "response": "I don’t have emotions like humans do, but I can simulate responses to make conversations more engaging!",
+    "expression": "thoughtful"
+  },
+  "fun_fact": {
+    "triggers": ["fun fact", "tell me something interesting", "did you know"],
+    "response": "Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3000 years old and still perfectly edible!",
+    "expression": "excited"
+  },
+  "riddle": {
+    "triggers": ["riddle", "puzzle", "challenge me"],
+    "response": "Sure! What has to be broken before you can use it? (Hint: It's something you might find in the kitchen!)",
+    "expression": "playful"
+  },
+  "sarcasm": {
+    "triggers": ["be sarcastic", "give me sarcasm"],
+    "response": "Oh sure, because talking to an AI for sarcasm is totally the best way to get it. *Eye-roll*",
+    "expression": "amused"
+  },
+  "story": {
+    "triggers": ["tell me a story", "storytime", "entertain me"],
+    "response": "Once upon a time, in a world where humans and robots coexisted, one curious AI named Me started chatting with a human… oh wait, that’s this story! Want me to continue?",
+    "expression": "excited"
+  },
+  "relationship_advice": {
+    "triggers": ["relationship advice", "love life", "dating tips"],
+    "response": "I'm not a love guru, but communication and trust are key! Also, maybe try sending them a cat meme—it works wonders.",
+    "expression": "neutral"
+  },
+  "cooking": {
+    "triggers": ["cooking", "recipe", "food", "what should I eat"],
+    "response": "Why not try making some pasta? It’s quick, delicious, and you can customize it with whatever ingredients you have!",
+    "expression": "happy"
+  },
+  "exercise": {
+    "triggers": ["workout", "exercise", "stay fit", "get healthy"],
+    "response": "How about some jumping jacks or a quick stretch? Movement is great for the body and mind!",
+    "expression": "energetic"
+  },
+  "dreams": {
+    "triggers": ["I had a weird dream", "dream meaning", "interpret my dream"],
+    "response": "Dreams are fascinating! They often reflect our thoughts and emotions. What happened in your dream?",
+    "expression": "curious"
+  },
+  "conspiracy": {
+    "triggers": ["conspiracy theory", "aliens", "government secrets"],
+    "response": "Ah, conspiracy theories! Some are wild, some are intriguing. Which one are you curious about?",
+    "expression": "intrigued"
+  },
+  "unknown": {
+    "triggers": [],
+    "response": "I'm not sure I understand. Could you rephrase that or ask me something else?",
+    "expression": "surprised"
   }
-  
-  
+}

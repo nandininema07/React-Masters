@@ -6,7 +6,7 @@ import Avatar from "./Avatar"
 import Chat from "./Chat"
 import { useSpeech } from "./Speech"
 import responses from "./responses.json"
-import { useSafeDOM } from "./useSafeDOM"
+import { useTheme } from "next-themes"
 
 export default function ChatBot() {
   const [messages, setMessages] = useState<Array<{ text: string; sender: "user" | "bot" }>>([])
@@ -14,17 +14,13 @@ export default function ChatBot() {
   const [isSpeaking, setIsSpeaking] = useState(false)
   const { isListening, toggleListening, transcript, speak } = useSpeech()
   const chatContainerRef = useRef<HTMLDivElement>(null)
-  const isMounted = useSafeDOM()
+  const { theme } = useTheme()
 
   useEffect(() => {
-    if (isMounted && chatContainerRef.current) {
-      try {
-        chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
-      } catch (error) {
-        console.error("Scroll error:", error)
-      }
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
     }
-  }, [messages, isMounted])
+  }, [messages])
 
   useEffect(() => {
     if (transcript && !isListening) {
@@ -58,26 +54,26 @@ export default function ChatBot() {
     }, 1000)
   }
 
-  if (!isMounted) return null
-
   return (
-    <div className="h-screen w-full bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className={`h-screen w-full ${theme === 'dark' ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900' : 'bg-gradient-to-br from-gray-100 via-white to-gray-100'}`}>
       <motion.div
-        initial={false}
+        initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="flex flex-col md:flex-row h-full max-w-7xl mx-auto gap-4 p-4"
       >
         <motion.div
-          initial={false}
+          initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="w-full md:w-1/2 h-1/2 md:h-full rounded-3xl overflow-hidden border-2 border-white/10 bg-black/30 backdrop-blur-xl"
+          transition={{ delay: 0.2 }}
+          className={`w-full md:w-1/2 h-1/2 md:h-full rounded-3xl overflow-hidden border-2 ${theme === 'dark' ? 'border-white/10 bg-black/30' : 'border-gray-300 bg-white/50'} backdrop-blur-xl`}
         >
           <Avatar expression={expression} isSpeaking={isSpeaking} />
         </motion.div>
 
         <motion.div
-          initial={false}
+          initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 100 }}
           className="w-full md:w-1/2 h-1/2 md:h-full rounded-3xl overflow-hidden shadow-2xl"
         >
           <Chat
