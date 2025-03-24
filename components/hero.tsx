@@ -1,91 +1,44 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { OrbitControls, useGLTF, Environment } from "@react-three/drei"
+import React, { useRef, useEffect, useState } from "react"
+import { Canvas } from "@react-three/fiber"
+import { OrbitControls, Environment } from "@react-three/drei"
 import { motion, useScroll, useTransform } from "framer-motion"
 import TextLoop from "react-text-loop"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Navbar from "./navbar"
-import Spline from '@splinetool/react-spline/next';
+import Spline from '@splinetool/react-spline/next'
 
-// 1. First try - Your custom model
-function CustomModel() {
-  const { scene } = useGLTF("/models/robot.glb")
-  const modelRef = useRef()
-  
-  useFrame(({ clock }) => {
-    modelRef.current.rotation.y = clock.getElapsedTime() * 0.3
-  })
+// Debugging Spline Model Component
+const DebugSplineModel: React.FC = () => {
+  const [error, setError] = useState<string | null>(null)
 
-  return <primitive ref={modelRef} object={scene} scale={2} position={[0, -1, 0]} />
-}
+  const handleLoad = () => {
+    console.log('Spline model loaded successfully')
+  }
 
-// 2. Fallback - Drei's duck model
-function DuckModel() {
-  const { scene } = useGLTF("https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/duck/model.gltf")
-  const modelRef = useRef()
-  
-  useFrame(({ clock }) => {
-    modelRef.current.rotation.y = clock.getElapsedTime() * 0.3
-  })
+  const handleError = (err: any) => {
+    console.error('Spline model loading error:', err)
+    setError(err.message)
+  }
 
-  return <primitive ref={modelRef} object={scene} scale={2} position={[0, -1, 0]} />
-}
-
-// 3. Final fallback - Simple geometry
-function FallbackModel() {
-  const modelRef = useRef()
-  
-  useFrame(({ clock }) => {
-    modelRef.current.rotation.y = clock.getElapsedTime() * 0.3
-  })
+  if (error) {
+    return (
+      <div className="text-red-500 p-4">
+        Error loading 3D model: {error}
+      </div>
+    )
+  }
 
   return (
-    <mesh ref={modelRef} position={[0, -1, 0]}>
-      <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color="#6b7280" metalness={0.5} roughness={0.3} />
-    </mesh>
-  )
+    <Spline scene="https://prod.spline.design/pXMX-2J6UH3bSWFP/scene.splinecode" />
+  );
 }
 
-function Model() {
-  const [loadState, setLoadState] = useState<'loading' | 'custom' | 'duck' | 'fallback'>('loading')
-
-  useEffect(() => {
-    // Try loading custom model first
-    try {
-      const { scene } = useGLTF("/models/robot.glb")
-      setLoadState('custom')
-      return
-    } catch (e) {
-      console.log("Custom model not found, trying duck model...")
-    }
-
-    // Then try duck model
-    try {
-      const { scene } = useGLTF("https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/duck/model.gltf")
-      setLoadState('duck')
-    } catch (e) {
-      console.log("Duck model failed, using fallback")
-      setLoadState('fallback')
-    }
-  }, [])
-
-  return (
-    <>
-      {loadState === 'custom' && <CustomModel />}
-      {loadState === 'duck' && <DuckModel />}
-      {loadState === 'fallback' && <FallbackModel />}
-      {loadState === 'loading' && <FallbackModel />}
-    </>
-  )
-}
-
-export default function Hero() {
-  const canvasRef = useRef(null)
-  const sectionRef = useRef(null)
+const Hero: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
@@ -94,7 +47,7 @@ export default function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
-  const highlights = [
+  const highlights: string[] = [
     "Redefining",
     "Reinnovating",
     "Recreating",
@@ -117,21 +70,19 @@ export default function Hero() {
   }, [])
 
   return (
-    <section 
+    <div 
       ref={sectionRef}
       className="relative w-full overflow-hidden bg-transparent"
       style={{ height: 'calc(var(--vh, 1vh) * 100)' }}
     >
       <Navbar />
       
-      {/* Animated background elements */}
       <motion.div className="absolute inset-0 z-0" style={{ y }}>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 dark:opacity-5" />
       </motion.div>
 
       <div className="container h-full mx-auto px-4 sm:text-xl flex flex-col md:flex-row items-center justify-center pt-20">
-        {/* Text content with animations */}
         <motion.div 
           className="w-full md:w-1/2 text-center sm:text-xl md:text-left mb-10 md:mb-0 z-10"
           initial={{ opacity: 0, x: -50 }}
@@ -197,7 +148,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* 3D Model Container */}
         <motion.div 
           className="w-full md:w-1/2 h-[50vh] md:h-full relative"
           initial={{ opacity: 0, x: 50 }}
@@ -212,7 +162,7 @@ export default function Hero() {
             <ambientLight intensity={0.5} />
             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
             <pointLight position={[-10, -10, -10]} intensity={0.5} />
-            <Model />
+            <DebugSplineModel />
             <OrbitControls 
               enableZoom={false} 
               autoRotate 
@@ -224,27 +174,28 @@ export default function Hero() {
             <Environment preset="studio" />
           </Canvas>
         </motion.div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.5 }}
-        style={{ opacity }}
-      >
-        <div className="animate-bounce flex flex-col items-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Scroll down</p>
-          <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-300 rounded-full flex justify-center">
-            <motion.div 
-              className="w-1 h-2 bg-gray-400 dark:bg-gray-300 rounded-full mt-2"
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.5 }}
+          style={{ opacity }}
+        >
+          <div className="animate-bounce flex flex-col items-center">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Scroll down</p>
+            <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-300 rounded-full flex justify-center">
+              <motion.div 
+                className="w-1 h-2 bg-gray-400 dark:bg-gray-300 rounded-full mt-2"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </div>
           </div>
-        </div>
-      </motion.div>
-    </section>
+        </motion.div>
+      </div>
+    </div>
   )
 }
+
+export default Hero
