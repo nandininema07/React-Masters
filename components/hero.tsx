@@ -1,62 +1,20 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { OrbitControls, useGLTF, Environment, Bounds } from "@react-three/drei"
-import * as THREE from "three"
+import Spline from '@splinetool/react-spline'
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Navbar from "./navbar"
 
-function CustomModel() {
-  const { scene } = useGLTF("/assets/3d/hero_section_copy.gltf")
-  const modelRef = useRef()
-  const { camera } = useThree()
-  
-  useFrame(({ clock }) => {
-    modelRef.current.rotation.y = clock.getElapsedTime() * 0.3
-  })
-
-  useEffect(() => {
-    if (modelRef.current) {
-      // Calculate bounding box to center and scale the model
-      const box = new THREE.Box3().setFromObject(modelRef.current)
-      const center = new THREE.Vector3()
-      box.getCenter(center)
-      
-      // Offset the model position to center it
-      modelRef.current.position.x -= center.x
-      modelRef.current.position.y -= center.y
-      modelRef.current.position.z -= center.z
-    }
-  }, [])
-
-  return <primitive ref={modelRef} object={scene} />
-}
-
-function ModelViewer() {
+const SplineModel = () => {
   return (
-    <Canvas
-      camera={{ position: [0, 0, 5], fov: 45 }}
-      style={{ width: '100%', height: '100%' }}
-    >
-      <ambientLight intensity={0.8} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} />
-      <Bounds fit margin={1.2}>
-        <CustomModel />
-      </Bounds>
-      <OrbitControls
-        enableZoom={true}
-        minDistance={3}
-        maxDistance={10}
-        autoRotate
-        autoRotateSpeed={1}
-        enablePan={false}
+    <div className="w-full h-full">
+      <Spline 
+        scene="https://prod.spline.design/5DkTahr1wvN0BRIr/scene.splinecode"
+        className="w-full h-full"
       />
-      <Environment preset="studio" />
-    </Canvas>
+    </div>
   )
 }
 
@@ -109,12 +67,14 @@ export default function Hero() {
     >
       <Navbar />
       
+      {/* Animated background elements */}
       <motion.div className="absolute inset-0 z-0" style={{ y }}>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 dark:opacity-5" />
       </motion.div>
 
       <div className="container h-full mx-auto px-4 flex flex-col md:flex-row items-center justify-center pt-20">
+        {/* Text content with animations */}
         <motion.div 
           className="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0 z-10"
           initial={{ opacity: 0, x: -50 }}
@@ -182,16 +142,18 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
+        {/* Spline Model Container */}
         <motion.div 
           className="w-full md:w-1/2 h-[400px] md:h-[500px] relative"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <ModelViewer />
+          <SplineModel />
         </motion.div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
         initial={{ opacity: 0, y: 20 }}
