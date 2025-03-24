@@ -130,22 +130,22 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 dark:opacity-5" />
       </motion.div>
 
-      <div className="container h-full mx-auto px-4 flex flex-col md:flex-row items-center justify-center pt-20">
+      <div className="container h-full mx-auto px-4 sm:text-xl flex flex-col md:flex-row items-center justify-center pt-20">
         {/* Text content with animations */}
         <motion.div 
-          className="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0 z-10"
+          className="w-full md:w-1/2 text-center sm:text-xl md:text-left mb-10 md:mb-0 z-10"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <h1 className="text-4xl md:text-5xl sm:top-24 sm:text-xl lg:text-6xl font-bold leading-tight mb-6">
             <span className="block">
-              <div className="text-left font-semibold h-20 md:h-24 lg:h-28 flex items-center">
+              <div className="text-left font-semibold h-20 md:h-24 sm:text-xl lg:h-28 flex items-center">
                 <TextLoop interval={2500} springConfig={{ stiffness: 180, damping: 12 }}>
                   {highlights.map((item, index) => (
                     <motion.span
                       key={index}
-                      className="coloredText text-5xl md:text-6xl lg:text-7xl mx-5 py-3 block"
+                      className="coloredText text-5xl sm:text-xl md:text-6xl lg:text-7xl mx-5 py-3 block"
                       style={{
                         background: "linear-gradient(to right, #4568DC, #B06AB3)",
                         WebkitBackgroundClip: "text",
