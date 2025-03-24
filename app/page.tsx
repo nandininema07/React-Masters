@@ -2,7 +2,7 @@ import Hero from "@/components/hero"
 import Features from "@/components/features"
 import Impact from "@/components/impact"
 import Testimonials from "@/components/testimonials"
-import Chatbot from "@/components/chatbot"
+import FloatingChatbot from "@/components/FloatingChatbot"
 import BackgroundGradient from "@/components/background-gradient"
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
       <Features />
       <Impact />
       <Testimonials />
-      <Chatbot />
+      <FloatingChatbot />
     </main>
   )
 }

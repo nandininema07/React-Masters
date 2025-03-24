@@ -2,6 +2,7 @@ import Navbar from "@/components/navbar"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
+import ChatBot from "@/components/chatbot"
 
 export default function SimulationPage() {
   return (
@@ -31,20 +32,7 @@ export default function SimulationPage() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-center p-10 text-center">
-            <img src="/placeholder.svg?height=300&width=300" alt="Robot Simulation" className="w-48 h-48 mb-6" />
-            <h3 className="text-xl font-medium mb-2">Simulation Coming Soon</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-md">
-              Our interactive simulation is currently under development. Please check back soon or contact our sales
-              team for a personalized demo.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/comparison">
-                <Button className="bg-primary hover:bg-primary/90">View Products</Button>
-              </Link>
-              <Button variant="outline">Request Demo</Button>
-            </div>
-          </div>
+          <ChatBot/>
         </div>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
