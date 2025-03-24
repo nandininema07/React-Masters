@@ -46,6 +46,38 @@ const testimonials = [
       "My kids absolutely love interacting with it! The educational games and activities keep them engaged while learning. It's also been great at establishing routines for bedtime and homework.",
     rating: 5,
   },
+  {
+    name: "Emily Rodriguez",
+    role: "Remote Worker",
+    avatar: "/placeholder.svg?height=80&width=80",
+    content:
+      "As someone who works from home, this robot has been a game-changer. It helps manage my schedule, sets up video meetings, and even provides ambient background noise when I need to focus.",
+    rating: 4,
+  },
+  {
+    name: "David Kim",
+    role: "Fitness Enthusiast",
+    avatar: "/placeholder.svg?height=80&width=80",
+    content:
+      "I've integrated this robot into my fitness routine. It tracks my workouts, provides nutrition advice, and even helps me stay motivated with personalized coaching and reminders.",
+    rating: 5,
+  },
+  {
+    name: "Lisa Nguyen",
+    role: "Language Learner",
+    avatar: "/placeholder.svg?height=80&width=80",
+    content:
+      "The language learning features are incredible! It helps me practice conversation, provides real-time translation, and adapts to my learning style. It feels like having a personal language tutor.",
+    rating: 5,
+  },
+  {
+    name: "Michael Thompson",
+    role: "Senior Executive",
+    avatar: "/placeholder.svg?height=80&width=80",
+    content:
+      "Managing complex schedules and information is crucial in my role. This robot helps me stay organized, provides quick briefings, and even helps prepare presentations. It's like an always-on assistant.",
+    rating: 4,
+  }
 ]
 
 export default function Testimonials() {
@@ -54,22 +86,12 @@ export default function Testimonials() {
   const scrollContainerRef = useRef(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
-  const [isPaused, setIsPaused] = useState(false)
-  const [autoScrollInterval, setAutoScrollInterval] = useState(null)
 
   const checkScrollButtons = () => {
     if (scrollContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
       setCanScrollLeft(scrollLeft > 0)
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
-
-      // If we've reached the end, reset to the beginning
-      if (scrollLeft >= scrollWidth - clientWidth - 10) {
-        scrollContainerRef.current.scrollTo({
-          left: 0,
-          behavior: "smooth",
-        })
-      }
     }
   }
 
@@ -77,43 +99,36 @@ export default function Testimonials() {
     const scrollContainer = scrollContainerRef.current
     if (scrollContainer) {
       scrollContainer.addEventListener("scroll", checkScrollButtons)
-      // Initial check
       checkScrollButtons()
       return () => scrollContainer.removeEventListener("scroll", checkScrollButtons)
     }
   }, [])
 
-  // Auto-scrolling functionality
+  // Circular scrolling effect
   useEffect(() => {
-    if (isInView && !isPaused) {
-      const interval = setInterval(() => {
-        if (scrollContainerRef.current) {
-          const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
-          const nextScrollPosition = scrollLeft + 300
+    if (isInView && scrollContainerRef.current) {
+      const scrollContainer = scrollContainerRef.current
+      const { scrollWidth, clientWidth } = scrollContainer
 
-          if (scrollLeft >= scrollWidth - clientWidth - 10) {
-            // Reset to beginning when reaching the end
-            scrollContainerRef.current.scrollTo({
-              left: 0,
-              behavior: "smooth",
-            })
-          } else {
-            // Continue scrolling
-            scrollContainerRef.current.scrollTo({
-              left: nextScrollPosition,
-              behavior: "smooth",
-            })
-          }
-          checkScrollButtons()
-        }
-      }, 4000)
+      const autoScroll = () => {
+        const { scrollLeft } = scrollContainer
+        const nextScrollPosition = scrollLeft + clientWidth
 
-      setAutoScrollInterval(interval)
-      return () => clearInterval(interval)
-    } else if (autoScrollInterval) {
-      clearInterval(autoScrollInterval)
+        scrollContainer.scrollTo({
+          left: nextScrollPosition,
+          behavior: "smooth"
+        })
+
+        checkScrollButtons()
+      }
+
+      // Set up interval for continuous scrolling
+      const intervalId = setInterval(autoScroll, 4000)
+
+      // Clean up interval on component unmount
+      return () => clearInterval(intervalId)
     }
-  }, [isInView, isPaused])
+  }, [isInView])
 
   const scroll = (direction) => {
     if (scrollContainerRef.current) {
@@ -150,11 +165,7 @@ export default function Testimonials() {
 
         <div className="relative">
           <button
-            onClick={() => {
-              scroll("left")
-              setIsPaused(true)
-              setTimeout(() => setIsPaused(false), 8000)
-            }}
+            onClick={() => scroll("left")}
             disabled={!canScrollLeft}
             className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-2 shadow-lg ${
               canScrollLeft ? "opacity-100 hover:bg-gray-100 dark:hover:bg-gray-700" : "opacity-30 cursor-not-allowed"
@@ -167,8 +178,6 @@ export default function Testimonials() {
           <div
             ref={scrollContainerRef}
             className="flex overflow-x-auto gap-6 pb-8 pt-4 px-4 -mx-4 scrollbar-hide snap-x"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
           >
             {testimonials.map((testimonial, index) => (
               <motion.div
@@ -204,11 +213,7 @@ export default function Testimonials() {
           </div>
 
           <button
-            onClick={() => {
-              scroll("right")
-              setIsPaused(true)
-              setTimeout(() => setIsPaused(false), 8000)
-            }}
+            onClick={() => scroll("right")}
             disabled={!canScrollRight}
             className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-2 shadow-lg ${
               canScrollRight ? "opacity-100 hover:bg-gray-100 dark:hover:bg-gray-700" : "opacity-30 cursor-not-allowed"
@@ -217,49 +222,8 @@ export default function Testimonials() {
           >
             <ChevronRight className="h-6 w-6" />
           </button>
-
-          {/* Pause/Play button */}
-          <button
-            onClick={() => setIsPaused(!isPaused)}
-            className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-2 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-            aria-label={isPaused ? "Play" : "Pause"}
-          >
-            {isPaused ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-              >
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-              >
-                <rect x="6" y="4" width="4" height="16"></rect>
-                <rect x="14" y="4" width="4" height="16"></rect>
-              </svg>
-            )}
-          </button>
         </div>
       </div>
     </section>
   )
 }
-
