@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 
-const FuturisticLoader = () => {
+const Loader = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-br from-black via-neutral-900 to-zinc-800">
       <motion.div
@@ -140,4 +140,4 @@ const FuturisticLoader = () => {
   );
 };
 
-export default FuturisticLoader;
+export default Loader;

@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useRef, useEffect, useState } from "react"
-import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Environment } from "@react-three/drei"
+import { useRef, useEffect, useState } from "react"
+import { Canvas, useFrame } from "@react-three/fiber"
+import { OrbitControls, useGLTF, Environment } from "@react-three/drei"
 import { motion, useScroll, useTransform } from "framer-motion"
 import TextLoop from "react-text-loop"
 import { Button } from "@/components/ui/button"
@@ -59,6 +59,15 @@ const Hero: React.FC = () => {
     "Revolutionizing",
   ]
 
+  const [currentHighlight, setCurrentHighlight] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHighlight((prev) => (prev + 1) % highlights.length)
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [])
+
   useEffect(() => {
     const setHeight = () => {
       const vh = window.innerHeight * 0.01
@@ -91,22 +100,24 @@ const Hero: React.FC = () => {
         >
           <h1 className="text-4xl md:text-5xl sm:top-24 sm:text-xl lg:text-6xl font-bold leading-tight mb-6">
             <span className="block">
-              <div className="text-left font-semibold h-20 md:h-24 sm:text-xl lg:h-28 flex items-center">
-                <TextLoop interval={2500} springConfig={{ stiffness: 180, damping: 12 }}>
-                  {highlights.map((item, index) => (
-                    <motion.span
-                      key={index}
-                      className="coloredText text-5xl sm:text-xl md:text-6xl lg:text-7xl mx-5 py-3 block"
-                      style={{
-                        background: "linear-gradient(to right, #4568DC, #B06AB3)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                      }}
-                    >
-                      {item}
-                    </motion.span>
-                  ))}
-                </TextLoop>
+              <div className="text-left font-semibold h-20 md:h-24 lg:h-28 flex items-center overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentHighlight}
+                    className="text-5xl md:text-6xl lg:text-7xl mx-5 py-3 block"
+                    style={{
+                      background: "linear-gradient(to right, #4568DC, #B06AB3)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {highlights[currentHighlight]}
+                  </motion.span>
+                </AnimatePresence>
               </div>
             </span>
             <motion.span 
