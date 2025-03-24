@@ -31,11 +31,11 @@ export default function ChatBot() {
   const handleUserMessage = (text: string) => {
     setMessages((prev) => [...prev, { text, sender: "user" }])
 
-    let foundResponse = responses.unknown
+    let foundResponse = responses.unknown ?? { response: "I didn't understand that.", expression: "confused" }
     const lowerText = text.toLowerCase()
 
     for (const [key, data] of Object.entries(responses)) {
-      if ((data.triggers as string[]).some((trigger) => lowerText.includes(trigger))) {
+      if (Array.isArray(data.triggers) && data.triggers.some((trigger) => lowerText.includes(trigger))) {
         foundResponse = data
         break
       }
