@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Navbar from "./navbar"
+import Spline from '@splinetool/react-spline/next';
 
 // 1. First try - Your custom model
 function CustomModel() {
