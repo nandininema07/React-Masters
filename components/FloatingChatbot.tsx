@@ -7,12 +7,44 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
+// Product-specific responses
+const productResponses = {
+  greetings: {
+    response: "Hello! I'm your product assistant. Ask me about our models, prices, colors, or how to buy!",
+    triggers: ["hello", "hi", "hey"]
+  },
+  models: {
+    response: "We offer 3 models:\n1. Basic - $999 (Essential features)\n2. Pro - $1499 (Advanced features + warranty)\n3. Elite - $1999 (All features + premium support)",
+    triggers: ["models", "model", "versions", "types", "options"]
+  },
+  prices: {
+    response: "Our pricing:\n- Basic: $999\n- Pro: $1499\n- Elite: $1999\nAll prices are in USD. Financing options available.",
+    triggers: ["price", "prices", "cost", "how much"]
+  },
+  colors: {
+    response: "Available colors:\n- Midnight Black\n- Arctic White\n- Ocean Blue\n- Forest Green\n- Ruby Red\nColors may vary by model.",
+    triggers: ["color", "colors", "available colors", "options"]
+  },
+  purchase: {
+    response: "You can purchase:\n1. Online at our website\n2. In-store at authorized dealers\n3. By phone at 1-800-OUR-PRODUCT\nWould you like a link to our online store?",
+    triggers: ["buy", "purchase", "order", "get", "where to buy"]
+  },
+  features: {
+    response: "Key differences:\nBasic: Core functionality\nPro: Adds advanced tools + 2yr warranty\nElite: All features + 24/7 support + 3yr warranty",
+    triggers: ["difference", "features", "compare", "what's included"]
+  },
+  unknown: {
+    response: "I'm not sure about that. Would you like information about our models, prices, or how to purchase?",
+    triggers: []
+  }
+}
+
 export default function FloatingChatbot() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
     {
       id: 1,
-      content: "We are here to help, please let us know what we can assist you with.",
+      content: productResponses.greetings.response,
       sender: "bot",
     },
   ])
@@ -29,7 +61,17 @@ export default function FloatingChatbot() {
     }
   }, [messages, isOpen])
 
-  const handleSendMessage = (e) => {
+  const findResponse = (userInput: string) => {
+    const lowerInput = userInput.toLowerCase()
+    for (const [key, data] of Object.entries(productResponses)) {
+      if ((data.triggers as string[]).some(trigger => lowerInput.includes(trigger.toLowerCase()))) {
+        return data.response
+      }
+    }
+    return productResponses.unknown.response
+  }
+
+  const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault()
     if (!input.trim()) return
 
@@ -39,18 +81,18 @@ export default function FloatingChatbot() {
       content: input,
       sender: "user",
     }
-    setMessages([...messages, userMessage])
+    setMessages(prev => [...prev, userMessage])
     setInput("")
 
     // Simulate bot response after a short delay
     setTimeout(() => {
+      const botResponse = findResponse(input)
       const botMessage = {
         id: messages.length + 2,
-        content:
-          "Thank you for your message. A customer service representative will get back to you shortly. In the meantime, can I help you with anything else?",
+        content: botResponse,
         sender: "bot",
       }
-      setMessages((prevMessages) => [...prevMessages, botMessage])
+      setMessages(prev => [...prev, botMessage])
     }, 1000)
   }
 
@@ -82,10 +124,10 @@ export default function FloatingChatbot() {
               <div className="flex items-center">
                 <Avatar className="h-8 w-8 mr-2">
                   <AvatarImage src="/placeholder.svg?height=32&width=32" alt="Bot" />
-                  <AvatarFallback>RH</AvatarFallback>
+                  <AvatarFallback>PA</AvatarFallback>
                 </Avatar>
                 <div>
-                  <h3 className="font-medium">RoboHelp Assistant</h3>
+                  <h3 className="font-medium">Product Assistant</h3>
                   <p className="text-xs text-gray-500 dark:text-gray-400">Online</p>
                 </div>
               </div>
@@ -98,13 +140,18 @@ export default function FloatingChatbot() {
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.map((message) => (
                 <div key={message.id} className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}>
-                  <div
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
                     className={`max-w-[80%] rounded-lg p-3 ${
-                      message.sender === "user" ? "bg-primary text-white" : "bg-gray-100 dark:bg-gray-700"
+                      message.sender === "user" 
+                        ? "bg-primary text-white" 
+                        : "bg-gray-100 dark:bg-gray-700"
                     }`}
                   >
                     {message.content}
-                  </div>
+                  </motion.div>
                 </div>
               ))}
               <div ref={messagesEndRef} />
@@ -115,7 +162,7 @@ export default function FloatingChatbot() {
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your message..."
+                placeholder="Ask about our products..."
                 className="flex-1"
               />
               <Button type="submit" size="icon" aria-label="Send message">
@@ -128,4 +175,3 @@ export default function FloatingChatbot() {
     </>
   )
 }
-
