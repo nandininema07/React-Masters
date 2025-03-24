@@ -1,89 +1,66 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { OrbitControls, useGLTF, Environment } from "@react-three/drei"
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
+import { OrbitControls, useGLTF, Environment, Bounds } from "@react-three/drei"
+import * as THREE from "three"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Navbar from "./navbar"
-import Spline from '@splinetool/react-spline/next';
 
-// 1. First try - Your custom model
 function CustomModel() {
-  const { scene } = useGLTF("/models/robot.glb")
+  const { scene } = useGLTF("/assets/3d/hero_section_copy.gltf")
   const modelRef = useRef()
+  const { camera } = useThree()
   
   useFrame(({ clock }) => {
     modelRef.current.rotation.y = clock.getElapsedTime() * 0.3
   })
-
-  return <primitive ref={modelRef} object={scene} scale={2} position={[0, -1, 0]} />
-}
-
-// 2. Fallback - Drei's duck model
-function DuckModel() {
-  const { scene } = useGLTF("https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/duck/model.gltf")
-  const modelRef = useRef()
-  
-  useFrame(({ clock }) => {
-    modelRef.current.rotation.y = clock.getElapsedTime() * 0.3
-  })
-
-  return <primitive ref={modelRef} object={scene} scale={2} position={[0, -1, 0]} />
-}
-
-// 3. Final fallback - Simple geometry
-function FallbackModel() {
-  const modelRef = useRef()
-  
-  useFrame(({ clock }) => {
-    modelRef.current.rotation.y = clock.getElapsedTime() * 0.3
-  })
-
-  return (
-    <mesh ref={modelRef} position={[0, -1, 0]}>
-      <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color="#6b7280" metalness={0.5} roughness={0.3} />
-    </mesh>
-  )
-}
-
-function Model() {
-  const [loadState, setLoadState] = useState<'loading' | 'custom' | 'duck' | 'fallback'>('loading')
 
   useEffect(() => {
-    // Try loading custom model first
-    try {
-      const { scene } = useGLTF("/models/robot.glb")
-      setLoadState('custom')
-      return
-    } catch (e) {
-      console.log("Custom model not found, trying duck model...")
-    }
-
-    // Then try duck model
-    try {
-      const { scene } = useGLTF("https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/duck/model.gltf")
-      setLoadState('duck')
-    } catch (e) {
-      console.log("Duck model failed, using fallback")
-      setLoadState('fallback')
+    if (modelRef.current) {
+      // Calculate bounding box to center and scale the model
+      const box = new THREE.Box3().setFromObject(modelRef.current)
+      const center = new THREE.Vector3()
+      box.getCenter(center)
+      
+      // Offset the model position to center it
+      modelRef.current.position.x -= center.x
+      modelRef.current.position.y -= center.y
+      modelRef.current.position.z -= center.z
     }
   }, [])
 
+  return <primitive ref={modelRef} object={scene} />
+}
+
+function ModelViewer() {
   return (
-    <>
-      {loadState === 'custom' && <CustomModel />}
-      {loadState === 'duck' && <DuckModel />}
-      {loadState === 'fallback' && <FallbackModel />}
-      {loadState === 'loading' && <FallbackModel />}
-    </>
+    <Canvas
+      camera={{ position: [0, 0, 5], fov: 45 }}
+      style={{ width: '100%', height: '100%' }}
+    >
+      <ambientLight intensity={0.8} />
+      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} />
+      <Bounds fit margin={1.2}>
+        <CustomModel />
+      </Bounds>
+      <OrbitControls
+        enableZoom={true}
+        minDistance={3}
+        maxDistance={10}
+        autoRotate
+        autoRotateSpeed={1}
+        enablePan={false}
+      />
+      <Environment preset="studio" />
+    </Canvas>
   )
 }
 
 export default function Hero() {
-  const canvasRef = useRef(null)
   const sectionRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -132,21 +109,19 @@ export default function Hero() {
     >
       <Navbar />
       
-      {/* Animated background elements */}
       <motion.div className="absolute inset-0 z-0" style={{ y }}>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 dark:opacity-5" />
       </motion.div>
 
-      <div className="container h-full mx-auto px-4 sm:text-xl flex flex-col md:flex-row items-center justify-center pt-20">
-        {/* Text content with animations */}
+      <div className="container h-full mx-auto px-4 flex flex-col md:flex-row items-center justify-center pt-20">
         <motion.div 
-          className="w-full md:w-1/2 text-center sm:text-xl md:text-left mb-10 md:mb-0 z-10"
+          className="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0 z-10"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-4xl md:text-5xl sm:top-24 sm:text-xl lg:text-6xl font-bold leading-tight mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             <span className="block">
               <div className="text-left font-semibold h-20 md:h-24 lg:h-28 flex items-center overflow-hidden">
                 <AnimatePresence mode="wait">
@@ -207,36 +182,16 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* 3D Model Container */}
         <motion.div 
-          className="w-full md:w-1/2 h-[50vh] md:h-full relative"
+          className="w-full md:w-1/2 h-[400px] md:h-[500px] relative"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <Canvas 
-            ref={canvasRef} 
-            camera={{ position: [0, 0, 5], fov: 50 }}
-            className="absolute inset-0"
-          >
-            <ambientLight intensity={0.5} />
-            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
-            <pointLight position={[-10, -10, -10]} intensity={0.5} />
-            <Model />
-            <OrbitControls 
-              enableZoom={false} 
-              autoRotate 
-              autoRotateSpeed={1} 
-              enablePan={false}
-              minPolarAngle={Math.PI/4}
-              maxPolarAngle={Math.PI/2}
-            />
-            <Environment preset="studio" />
-          </Canvas>
+          <ModelViewer />
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
         initial={{ opacity: 0, y: 20 }}
