@@ -52,7 +52,7 @@
     "expo-asset": "latest",
     "expo-file-system": "latest",
     "expo-gl": "latest",
-    "framer-motion": "latest",
+    "framer-motion": "^12.5.0",
     "framer-motion-3d": "^12.4.13",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",

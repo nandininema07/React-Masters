@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { OrbitControls, useGLTF, Environment } from "@react-three/drei"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import TextLoop from "react-text-loop"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
