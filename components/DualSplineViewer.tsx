@@ -2,24 +2,32 @@
 
 import { useState, useCallback } from 'react'
 import Spline from '@splinetool/react-spline'
-import { Application } from '@splinetool/runtime'
+import type { SplineEvent } from '@splinetool/react-spline'
 
 export default function DualRobotViewer() {
   const [colorLoaded, setColorLoaded] = useState(false)
   const [behaviorLoaded, setBehaviorLoaded] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [splineInstance, setSplineInstance] = useState<Application | null>(null)
+  const [splineInstance, setSplineInstance] = useState<any>(null)
 
   // Handle successful load
-  const handleColorLoad = useCallback((spline: { application: Application }) => {
+  const handleColorLoad = useCallback((spline: any) => {
     setColorLoaded(true)
-    spline.application.emitEvent('mouseDown', 'Play') // Start any default animation
+    try {
+      spline.emitEvent('mouseDown', 'Play')
+    } catch (e) {
+      console.warn("Could not trigger default animation:", e)
+    }
   }, [])
 
-  const handleBehaviorLoad = useCallback((spline: { application: Application }) => {
+  const handleBehaviorLoad = useCallback((spline: any) => {
     setBehaviorLoaded(true)
-    setSplineInstance(spline.application)
-    spline.application.emitEvent('mouseDown', 'Idle') // Start idle animation
+    setSplineInstance(spline)
+    try {
+      spline.emitEvent('mouseDown', 'Idle')
+    } catch (e) {
+      console.warn("Could not trigger idle animation:", e)
+    }
   }, [])
 
   // Handle errors
@@ -27,6 +35,17 @@ export default function DualRobotViewer() {
     console.error('Spline loading error:', err)
     setError('Failed to load 3D models. Please refresh or check your connection.')
   }, [])
+
+  // Safe event triggering
+  const triggerAnimation = (eventName: string) => {
+    if (splineInstance) {
+      try {
+        splineInstance.emitEvent('mouseDown', eventName)
+      } catch (e) {
+        console.error("Failed to trigger animation:", e)
+      }
+    }
+  }
 
   return (
     <div className="flex flex-col md:flex-row gap-8 w-full">
@@ -53,7 +72,6 @@ export default function DualRobotViewer() {
             scene="https://prod.spline.design/lFaMJwTl62RYoSxw/scene.splinecode"
             onLoad={handleColorLoad}
             onError={handleError}
-            className="w-full h-full"
           />
           {!colorLoaded && !error && (
             <div className="absolute inset-0 flex items-center justify-center bg-white/50 dark:bg-gray-800/50">
@@ -88,7 +106,6 @@ export default function DualRobotViewer() {
             scene="https://prod.spline.design/aSi5IpqxQ4ULAyon/scene.splinecode"
             onLoad={handleBehaviorLoad}
             onError={handleError}
-            className="w-full h-full"
           />
           {!behaviorLoaded && !error && (
             <div className="absolute inset-0 flex items-center justify-center bg-white/50 dark:bg-gray-800/50">
@@ -106,25 +123,25 @@ export default function DualRobotViewer() {
           </p>
           <div className="flex flex-wrap gap-2">
             <button 
-              onClick={() => splineInstance?.emitEvent('mouseDown', 'Wave')}
+              onClick={() => triggerAnimation('Wave')}
               className="px-3 py-1 text-xs bg-green-100 dark:bg-green-900 rounded-full hover:scale-105 transition"
             >
               👋 Wave
             </button>
             <button 
-              onClick={() => splineInstance?.emitEvent('mouseDown', 'Dance')}
+              onClick={() => triggerAnimation('Dance')}
               className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900 rounded-full hover:scale-105 transition"
             >
               💃 Dance
             </button>
             <button 
-              onClick={() => splineInstance?.emitEvent('mouseDown', 'Jump')}
+              onClick={() => triggerAnimation('Jump')}
               className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900 rounded-full hover:scale-105 transition"
             >
               🦘 Jump
             </button>
             <button 
-              onClick={() => splineInstance?.emitEvent('mouseDown', 'Idle')}
+              onClick={() => triggerAnimation('Idle')}
               className="px-3 py-1 text-xs bg-gray-100 dark:bg-gray-700 rounded-full hover:scale-105 transition"
             >
               🧘 Reset
