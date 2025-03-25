@@ -67,7 +67,7 @@ export default function DualRobotViewer() {
           </div>
         </div>
         
-        <div className="h-[500px] w-full relative">
+        <div className="h-[600px] w-full relative md:h-[800]">
           <Spline
             scene="https://prod.spline.design/FuJx0gqrhS-iXC47/scene.splinecode"
             onLoad={handleColorLoad}
@@ -101,7 +101,7 @@ export default function DualRobotViewer() {
           </div>
         </div>
         
-        <div className="h-[500px] w-full relative">
+        <div className="h-[600px] md-h-[800] w-full relative">
           <Spline
             scene="https://prod.spline.design/aSi5IpqxQ4ULAyon/scene.splinecode"
             onLoad={handleBehaviorLoad}
