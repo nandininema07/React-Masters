@@ -9,7 +9,7 @@ const testimonials = [
   {
     name: "Sarah Johnson",
     role: "Working Parent",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
     content:
       "This robot has completely transformed our family life. It helps with scheduling, reminders, and even assists the kids with homework. I can't imagine our busy household without it now!",
     rating: 5,
@@ -17,7 +17,7 @@ const testimonials = [
   {
     name: "Robert Chen",
     role: "Tech Enthusiast",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
     content:
       "The smart home integration is flawless. It connects with all my existing devices and the voice recognition is the best I've experienced. Worth every penny for the convenience it brings.",
     rating: 5,
@@ -25,7 +25,7 @@ const testimonials = [
   {
     name: "Maria Garcia",
     role: "Caregiver",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/women/50.jpg",
     content:
       "I got this for my elderly mother who lives alone, and it's given our family such peace of mind. It reminds her to take medication, helps with video calls, and alerts us if there's anything unusual.",
     rating: 4,
@@ -33,7 +33,7 @@ const testimonials = [
   {
     name: "James Wilson",
     role: "Small Business Owner",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
     content:
       "I use this both at home and in my small office. The scheduling features and ability to manage different environments is impressive. It's like having a personal assistant that never sleeps!",
     rating: 5,
@@ -41,7 +41,7 @@ const testimonials = [
   {
     name: "Aisha Patel",
     role: "Parent of Young Children",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/women/21.jpg",
     content:
       "My kids absolutely love interacting with it! The educational games and activities keep them engaged while learning. It's also been great at establishing routines for bedtime and homework.",
     rating: 5,
@@ -49,7 +49,7 @@ const testimonials = [
   {
     name: "Emily Rodriguez",
     role: "Remote Worker",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/women/65.jpg",
     content:
       "As someone who works from home, this robot has been a game-changer. It helps manage my schedule, sets up video meetings, and even provides ambient background noise when I need to focus.",
     rating: 4,
@@ -57,7 +57,7 @@ const testimonials = [
   {
     name: "David Kim",
     role: "Fitness Enthusiast",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/men/38.jpg",
     content:
       "I've integrated this robot into my fitness routine. It tracks my workouts, provides nutrition advice, and even helps me stay motivated with personalized coaching and reminders.",
     rating: 5,
@@ -65,7 +65,7 @@ const testimonials = [
   {
     name: "Lisa Nguyen",
     role: "Language Learner",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/women/27.jpg",
     content:
       "The language learning features are incredible! It helps me practice conversation, provides real-time translation, and adapts to my learning style. It feels like having a personal language tutor.",
     rating: 5,
@@ -73,12 +73,13 @@ const testimonials = [
   {
     name: "Michael Thompson",
     role: "Senior Executive",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "https://randomuser.me/api/portraits/men/60.jpg",
     content:
       "Managing complex schedules and information is crucial in my role. This robot helps me stay organized, provides quick briefings, and even helps prepare presentations. It's like an always-on assistant.",
     rating: 4,
   }
-]
+];
+
 
 export default function Testimonials() {
   const sectionRef = useRef(null)

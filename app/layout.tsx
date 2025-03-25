@@ -11,16 +11,14 @@ export const metadata = {
   title: "FamBot - Intelligent Home Assistant Robot",
   description:
     "Meet FamBot, the intelligent robot companion that transforms your daily life with smart automation, personalized assistance, and seamless home integration.",
+    icons: {
+      icon: "/assets/BLUEBOT.png",
+    },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-      </Head>
       <body className={inter.className}>
         <ClientLayout>{children}</ClientLayout>
       </body>
