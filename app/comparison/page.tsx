@@ -2,6 +2,7 @@ import Navbar from "@/components/navbar"
 import { Check, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Footer from "@/components/footer"
 
 export default function ComparisonPage() {
   const models = [
@@ -126,6 +127,7 @@ export default function ComparisonPage() {
           ))}
         </div>
       </div>
+      <Footer/>
     </main>
   )
 }

@@ -157,9 +157,9 @@ export default function Chat({
             disabled={isSpeaking}
           >
             {isListening ? (
-              <MicOff className="text-red-400" size={20} />
+              <p className="px-8 flex gap-3 items-center rounded-xl justify-between"><MicOff className="text-red-400" size={20} />Click to turn off the MIC</p>
             ) : (
-              <Mic className="text-green-400" size={20} />
+              <p className="px-8 flex gap-3 items-center rounded-xl justify-between"><Mic className="text-green-400" size={20} />Click here to speak</p>
             )}
           </motion.button>
 

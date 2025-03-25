@@ -4,6 +4,7 @@ import Impact from "@/components/impact"
 import Testimonials from "@/components/testimonials"
 import FloatingChatbot from "@/components/FloatingChatbot"
 import BackgroundGradient from "@/components/background-gradient"
+import Footer from "@/components/footer"
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Impact />
       <Testimonials />
       <FloatingChatbot />
+      <Footer/>
     </main>
   )
 }

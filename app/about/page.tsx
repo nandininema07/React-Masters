@@ -2,6 +2,9 @@ import Navbar from "@/components/navbar"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowRight, Award, Clock, Heart, Shield } from "lucide-react"
+import Mihir from '../../public/assets/Mihir.jpg'
+import Kristina from '../../public/assets/Kristina.jpg'
+import Nandini from '../../public/assets/Nandini.jpg'
 
 export default function AboutPage() {
   return (
@@ -35,7 +38,7 @@ export default function AboutPage() {
             <div className="w-full md:w-1/2 flex justify-center">
               <div className="relative w-full max-w-md aspect-square rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
                 <img
-                  src="/placeholder.svg?height=300&width=300"
+                  src="/assets/BLUEBOT.png"
                   alt="RoboHelp Robot"
                   className="w-3/4 h-3/4 object-contain"
                 />
@@ -121,32 +124,26 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
                   <img
-                    src="/placeholder.svg?height=300&width=300"
-                    alt="Team working"
+                    src="/assets/Mihir.jpg"
+                    alt="Mihir"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
                   <img
-                    src="/placeholder.svg?height=300&width=300"
-                    alt="Robot prototype"
+                    src="/assets/Kristina.jpg"
+                    alt="Kristina"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
                   <img
-                    src="/placeholder.svg?height=300&width=300"
-                    alt="Office space"
+                    src="/assets/Nandini.jpg"
+                    alt="Nandini"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
-                  <img
-                    src="/placeholder.svg?height=300&width=300"
-                    alt="Robot in home"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+               
               </div>
             </div>
           </div>

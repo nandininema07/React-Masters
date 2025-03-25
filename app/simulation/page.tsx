@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import ChatBot from "@/components/chatbot"
+import Footer from "@/components/footer"
 
 export default function SimulationPage() {
   return (
@@ -57,6 +58,7 @@ export default function SimulationPage() {
           </div>
         </div>
       </div>
+      <Footer/>
     </main>
   )
 }
