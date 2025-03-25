@@ -144,7 +144,7 @@ export default function Hero() {
 
         {/* Spline Model Container */}
         <motion.div 
-          className="w-full md:mb-10 md:w-1/2 h-[500px] md:h-[800px] relative -mt-10"
+          className="w-full md:w-1/2 h-[500px] md:h-[800px] relative"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}

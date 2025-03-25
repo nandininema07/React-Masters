@@ -111,7 +111,7 @@ export default function Features() {
     <section>
       <div className="container mx-auto px-4 flex flex-col md:flex-row h-full dark:text-white text-black">
           <div className="w-full md:w-1/2 h-[60vh] md:h-full flex items-center justify-center">
-            <div className="max-w-[600px] md:h-[800px] w-full">
+            <div className="max-w-[500px] md:max-w-[700px]">
               <h1 className="text-5xl md:text-6xl font-bold text-black dark:text-white">
                 Our Features
               </h1>
