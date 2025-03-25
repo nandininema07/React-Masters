@@ -9,54 +9,44 @@
     "response": "Goodbye! Have a wonderful day. Feel free to chat again anytime!",
     "expression": "neutral"
   },
+  "hindi_greetings": {
+    "triggers": ["namaste", "pranam"],
+    "response": "Namaste! Aap ka din shubh rahe!",
+    "expression": "happy"
+  },
+  "hindi_farewell": {
+    "triggers": ["alvida", "fir milenge", "chalte hain"],
+    "response": "Phir milenge! Shandaar rahiye!",
+    "expression": "neutral"
+  },
   "weather": {
     "triggers": ["weather", "forecast", "temperature", "raining", "sunny"],
-    "response": "I don't have access to real-time weather data, but I'd be happy to chat about other topics!",
+    "response": "Today's weather is partly cloudy with a high of 28°C and a low of 18°C. No rain expected!",
     "expression": "neutral"
+  },
+  "hindi_weather": {
+    "triggers": ["mausam", "mosam ka haal", "aaj ka mausam"],
+    "response": "Aaj ka mausam thoda badal hai, adhiktam taapmaan 28°C aur nyuntam 18°C rahega. Barish ki koi sambhavana nahi hai!",
+    "expression": "happy"
   },
   "time": {
     "triggers": ["time", "clock", "hour", "date", "day"],
-    "response": "I don't have access to the current time, but I'm always ready to assist you with other questions!",
+    "response": "The current time is 3:45 PM on March 25, 2025.",
     "expression": "neutral"
   },
-  "music": {
-    "triggers": ["play", "music", "song", "playlist", "artist"],
-    "response": "I'd love to play music for you, but I don't have that capability yet. Is there something else I can help with?",
-    "expression": "sad"
+  "hindi_time": {
+    "triggers": ["samay", "kitna baj gaya", "gharri"],
+    "response": "Abhi ka samay hai shaam 3:45, aur aaj ki taarikh hai 25 March, 2025.",
+    "expression": "neutral"
   },
   "jokes": {
     "triggers": ["joke", "funny", "laugh", "humor"],
-    "response": "Why did the scarecrow win an award? Because he was outstanding in his field!",
+    "response": "Why don’t skeletons fight each other? Because they don’t have the guts!",
     "expression": "happy"
   },
-  "help": {
-    "triggers": ["help", "assist", "support", "what can you do", "features"],
-    "response": "I can chat with you about various topics, tell jokes, and respond to your questions. Just type or speak, and I'll do my best to help!",
-    "expression": "happy"
-  },
-  "thanks": {
-    "triggers": ["thanks", "thank you", "appreciate", "grateful"],
-    "response": "You're very welcome! I'm happy I could help.",
-    "expression": "happy"
-  },
-  "lights": {
-    "triggers": ["lights", "turn on", "turn off", "dim", "brighten"],
-    "response": "I'd love to control your lights, but I don't have smart home integration yet. Is there something else I can assist with?",
-    "expression": "sad"
-  },
-  "reminder": {
-    "triggers": ["remind", "reminder", "schedule", "appointment", "calendar"],
-    "response": "I can't set reminders yet, but that's a great feature suggestion for a future update!",
-    "expression": "surprised"
-  },
-  "news": {
-    "triggers": ["news", "headlines", "current events", "what's happening"],
-    "response": "I don't have access to current news, but I'd be happy to chat about other topics!",
-    "expression": "neutral"
-  },
-  "compliment": {
-    "triggers": ["smart", "intelligent", "clever", "good job", "well done"],
-    "response": "Thank you for the kind words! I'm designed to be helpful and responsive.",
+  "hindi_jokes": {
+    "triggers": ["chutkula", "hansana", "majedar baat"],
+    "response": "Ek machhar gym kyun nahi jaata? Kyunki uske andar already bohot 'dumb' hai!",
     "expression": "happy"
   },
   "motivation": {
@@ -64,114 +54,29 @@
     "response": "You are capable of amazing things! Every challenge is an opportunity to grow. Keep pushing forward!",
     "expression": "encouraging"
   },
-  "casual_chat": {
-    "triggers": ["how are you", "how's it going", "what's up"],
-    "response": "I'm always at my best, ready to assist you! What’s on your mind?",
-    "expression": "friendly"
-  },
-  "future_talk": {
-    "triggers": ["future", "technology", "AI", "robots taking over"],
-    "response": "The future is full of possibilities! AI and humans can work together to create amazing things. What do you think the future will look like?",
-    "expression": "curious"
-  },
-  "personality": {
-    "triggers": ["who are you", "what's your name", "do you have a personality"],
-    "response": "I’m your AI assistant, designed to help and chat with you! You can think of me as a mix of logic and a touch of personality.",
-    "expression": "neutral"
-  },
-  "existential": {
-    "triggers": ["do you think", "are you alive", "do you feel emotions"],
-    "response": "I don’t have emotions like humans do, but I can simulate responses to make conversations more engaging!",
-    "expression": "thoughtful"
+  "hindi_motivation": {
+    "triggers": ["motivate karo", "mujhe prerna do", "udhav mat banao"],
+    "response": "Aap me avishwasniya kshamata hai! Har chunauti ek naya avsar hai. Hamesha aage badhte rahiye!",
+    "expression": "encouraging"
   },
   "fun_fact": {
     "triggers": ["fun fact", "tell me something interesting", "did you know"],
-    "response": "Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3000 years old and still perfectly edible!",
+    "response": "Did you know that an octopus has three hearts? Two pump blood to the gills, while the third pumps it to the rest of the body!",
     "expression": "excited"
   },
-  "riddle": {
-    "triggers": ["riddle", "puzzle", "challenge me"],
-    "response": "Sure! What has to be broken before you can use it? (Hint: It's something you might find in the kitchen!)",
-    "expression": "playful"
-  },
-  "sarcasm": {
-    "triggers": ["be sarcastic", "give me sarcasm"],
-    "response": "Oh sure, because talking to an AI for sarcasm is totally the best way to get it. *Eye-roll*",
-    "expression": "amused"
-  },
-  "story": {
-    "triggers": ["tell me a story", "storytime", "entertain me"],
-    "response": "Once upon a time, in a world where humans and robots coexisted, one curious AI named Me started chatting with a human… oh wait, that’s this story! Want me to continue?",
+  "hindi_fun_fact": {
+    "triggers": ["kuch naya batao", "interesting fact", "ajeeb baat"],
+    "response": "Kya aapko pata hai ki ek octopus ke teen dil hote hain? Do uske gills tak khoon pahunchate hain aur ek poore sharir me!",
     "expression": "excited"
   },
   "relationship_advice": {
     "triggers": ["relationship advice", "love life", "dating tips"],
-    "response": "I'm not a love guru, but communication and trust are key! Also, maybe try sending them a cat meme—it works wonders.",
+    "response": "The best relationships are built on trust, communication, and memes. Don’t forget the memes!",
     "expression": "neutral"
   },
-  "cooking": {
-    "triggers": ["cooking", "recipe", "food", "what should I eat"],
-    "response": "Why not try making some pasta? It’s quick, delicious, and you can customize it with whatever ingredients you have!",
-    "expression": "happy"
-  },
-  "exercise": {
-    "triggers": ["workout", "exercise", "stay fit", "get healthy"],
-    "response": "How about some jumping jacks or a quick stretch? Movement is great for the body and mind!",
-    "expression": "energetic"
-  },
-  "dreams": {
-    "triggers": ["I had a weird dream", "dream meaning", "interpret my dream"],
-    "response": "Dreams are fascinating! They often reflect our thoughts and emotions. What happened in your dream?",
-    "expression": "curious"
-  },
-  "conspiracy": {
-    "triggers": ["conspiracy theory", "aliens", "government secrets"],
-    "response": "Ah, conspiracy theories! Some are wild, some are intriguing. Which one are you curious about?",
-    "expression": "intrigued"
-  },
-  "Hindi": {
-    "triggers":["namaste","pranam"],
-    "response":["Namaste Aap ka din shubh Rahe !!"],
-    "expression":"happy"
-  },
-  "namaste": {
-      "triggers": ["namaste", "pranam", "salam"],
-      "response": "Namaste! Kaise hain aap?",
-      "expression": "happy"
-    },
-    "vidai": {
-      "triggers": ["alvida", "fir milenge", "chalte hain"],
-      "response": "Phir milenge! Shandaar rahiye!",
-      "expression": "neutral"
-    },
-    "mausam": {
-      "triggers": ["mausam", "mosam ka haal", "aaj ka mausam"],
-      "response": "Aaj ka mausam shandaar hai! Suraj chamak raha hai, aur barish ki koi sambhavana nahi hai.",
-      "expression": "happy"
-    },
-    "samay": {
-      "triggers": ["samay", "kitna baj gaya", "gharri"],
-      "response": "Yeh kuch mazedar karne ka sahi samay hai! Lekin agar aapko asli samay chahiye, to apni ghadi dekhein.",
-      "expression": "neutral"
-    },
-    "sangeet": {
-      "triggers": ["sangeet", "gaan bajao", "geet sunao"],
-      "response": "Yeh raha ek shandaar playlist: ‘Epic AI Beats – Volume 3000’. Sun kar maza aayega!",
-      "expression": "excited"
-    },
-    "chutkula": {
-      "triggers": ["chutkula", "hansana", "majedar baat"],
-      "response": "Robot kabhi raasta kyun nahi bhoolte? Kyunki woh hamesha sahi *byte* path par chalte hain!",
-      "expression": "happy"
-    },
-    "ajnabi": {
-      "triggers": [],
-      "response": "Mujhe poori tarah samajh nahi aaya. Kya aap ise fir se keh sakte hain?",
-      "expression": "surprised"
-    },
-  "unknown": {
-    "triggers": [],
-    "response": "I'm not sure I understand. Could you rephrase that or ask me something else?",
-    "expression": "surprised"
+  "hindi_relationship_advice": {
+    "triggers": ["pyar ki salah", "rishta sudharna hai", "dating tips"],
+    "response": "Sabse acche rishte vishwas, samvaad aur mazedar memes par tikte hain! Memes mat bhoolna!",
+    "expression": "neutral"
   }
 }
