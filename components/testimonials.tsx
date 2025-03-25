@@ -17,7 +17,7 @@ const testimonials = [
   {
     name: "Robert Chen",
     role: "Tech Enthusiast",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "/assets/Kristina.jpg",
     content:
       "The smart home integration is flawless. It connects with all my existing devices and the voice recognition is the best I've experienced. Worth every penny for the convenience it brings.",
     rating: 5,
@@ -25,7 +25,7 @@ const testimonials = [
   {
     name: "Maria Garcia",
     role: "Caregiver",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "/assets/BLUEBOT.png",
     content:
       "I got this for my elderly mother who lives alone, and it's given our family such peace of mind. It reminds her to take medication, helps with video calls, and alerts us if there's anything unusual.",
     rating: 4,
@@ -33,7 +33,7 @@ const testimonials = [
   {
     name: "James Wilson",
     role: "Small Business Owner",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "/assets/Mihir.jpg",
     content:
       "I use this both at home and in my small office. The scheduling features and ability to manage different environments is impressive. It's like having a personal assistant that never sleeps!",
     rating: 5,
@@ -49,7 +49,7 @@ const testimonials = [
   {
     name: "Emily Rodriguez",
     role: "Remote Worker",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: "/assets/Nandini.jpg",
     content:
       "As someone who works from home, this robot has been a game-changer. It helps manage my schedule, sets up video meetings, and even provides ambient background noise when I need to focus.",
     rating: 4,
