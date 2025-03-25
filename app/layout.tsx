@@ -6,9 +6,9 @@ import ClientLayout from "@/components/ClientLayout"; // ✅ Use the new client 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "RoboHelp - Intelligent Home Assistant Robot",
+  title: "FamBot - Intelligent Home Assistant Robot",
   description:
-    "Meet RoboHelp, the intelligent robot companion that transforms your daily life with smart automation, personalized assistance, and seamless home integration.",
+    "Meet FamBot, the intelligent robot companion that transforms your daily life with smart automation, personalized assistance, and seamless home integration.",
   generator: "v0.dev",
 };
 

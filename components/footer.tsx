@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">RoboHelp</h3>
+            <h3 className="text-lg font-semibold mb-4">FamBot</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Transforming homes with intelligent robotics and AI-powered assistance.
             </p>
@@ -38,7 +38,7 @@ export default function Footer() {
                   href="/comparison"
                   className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white"
                 >
-                  RoboHelp Basic
+                  FamBot Basic
                 </Link>
               </li>
               <li>
@@ -46,7 +46,7 @@ export default function Footer() {
                   href="/comparison"
                   className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white"
                 >
-                  RoboHelp Pro
+                  FamBot Pro
                 </Link>
               </li>
               <li>
@@ -54,7 +54,7 @@ export default function Footer() {
                   href="/comparison"
                   className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white"
                 >
-                  RoboHelp Ultimate
+                  FamBot Ultimate
                 </Link>
               </li>
               <li>
@@ -123,7 +123,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-8">
           <p className="text-gray-500 dark:text-gray-400 text-sm text-center">
-            © {new Date().getFullYear()} RoboHelp Inc. All rights reserved.
+            © {new Date().getFullYear()} FamBot Inc. All rights reserved.
           </p>
         </div>
       </div>

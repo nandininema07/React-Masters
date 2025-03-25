@@ -29,7 +29,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                RoboHelp
+                FamBot
               </span>
             </Link>
           </div>
