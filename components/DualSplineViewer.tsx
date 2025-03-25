@@ -69,7 +69,7 @@ export default function DualRobotViewer() {
         
         <div className="h-[500px] w-full relative">
           <Spline
-            scene="https://prod.spline.design/lFaMJwTl62RYoSxw/scene.splinecode"
+            scene="https://prod.spline.design/FuJx0gqrhS-iXC47/scene.splinecode"
             onLoad={handleColorLoad}
             onError={handleError}
           />
@@ -126,25 +126,25 @@ export default function DualRobotViewer() {
               onClick={() => triggerAnimation('Wave')}
               className="px-3 py-1 text-xs bg-green-100 dark:bg-green-900 rounded-full hover:scale-105 transition"
             >
-              👋 Wave
+              😃 Happy
             </button>
             <button 
               onClick={() => triggerAnimation('Dance')}
               className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900 rounded-full hover:scale-105 transition"
             >
-              💃 Dance
+              😡 Angry
             </button>
             <button 
               onClick={() => triggerAnimation('Jump')}
               className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900 rounded-full hover:scale-105 transition"
             >
-              🦘 Jump
+              😭 Crying
             </button>
             <button 
               onClick={() => triggerAnimation('Idle')}
               className="px-3 py-1 text-xs bg-gray-100 dark:bg-gray-700 rounded-full hover:scale-105 transition"
             >
-              🧘 Reset
+              🤩 Excited
             </button>
           </div>
         </div>
