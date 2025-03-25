@@ -1,8 +1,8 @@
 "use client"; // ✅ This ensures the component is a Client Component
 
 import { useState, useEffect } from "react";
-import Cursor from "@/components/cursor";
-import Loader from "@/components/loader";
+import Cursor from "@/components/Cursor";
+import Loader from "@/components/Loader";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
