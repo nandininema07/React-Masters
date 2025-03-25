@@ -87,7 +87,7 @@ export default function Hero() {
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={currentHighlight}
-                    className="text-5xl md:text-6xl lg:text-7xl py-3 block"
+                    className="text-4xl md:text-6xl lg:text-7xl py-3 block"
                     style={{
                       background: "linear-gradient(to right, #4568DC, #B06AB3)",
                       WebkitBackgroundClip: "text",
