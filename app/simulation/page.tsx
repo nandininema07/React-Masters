@@ -1,25 +1,34 @@
-'use client'
+"use client";
 
-import Navbar from "@/components/navbar"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import ChatBot from "@/components/chatbot"
-import Footer from "@/components/footer"
+import Navbar from "@/components/navbar";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import ChatBot from "@/components/chatbot";
+import Footer from "@/components/footer";
 
 export default function SimulationPage() {
   return (
     <main className="min-h-screen bg-transparent pt-20">
       <Navbar />
       <div className="container mx-auto px-4 py-16">
-        <Link href="/" className="inline-flex items-center mb-8 text-primary hover:underline">
+        <Link
+          href="/"
+          className="inline-flex items-center mb-8 text-primary hover:underline"
+        >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Home
         </Link>
 
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Interactive Simulation</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+            Interactive Simulation
+          </h1>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Experience our interactive tools and simulations.
+            Experience Our Interactive Tools and Simulations At the heart of our
+            platform lies a suite of interactive tools and simulations designed
+            to provide an engaging, hands-on experience for users across various
+            domains. These tools help visualize complex concepts, analyze data
+            in real time, and enhance learning through active participation.
           </p>
         </div>
 
@@ -33,11 +42,11 @@ export default function SimulationPage() {
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
           </div>
-          <ChatBot/>
+          <ChatBot />
         </div>
 
-        <Footer/>
+        <Footer />
       </div>
     </main>
-  )
+  );
 }

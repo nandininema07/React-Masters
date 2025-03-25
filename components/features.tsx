@@ -108,6 +108,19 @@ export default function Features() {
   }, [])
 
   return (
+    <section>
+      <div className="container mx-auto px-4 flex flex-col md:flex-row h-full dark:text-white text-black">
+          <div className="w-full md:w-1/2 h-[60vh] md:h-full flex items-center justify-center">
+            <div className="max-w-[500px] md:max-w-[700px]">
+              <h1 className="text-5xl md:text-6xl font-bold text-black dark:text-white">
+                Our Features
+              </h1>
+              <p className="mt-4 text-xl md:text-2xl text-black dark:text-white">
+                Experience the future of smart home technology with our cutting-edge features.
+              </p>
+            </div>
+          </div>
+      </div>
     <section 
       id="features" 
       ref={sectionRef} 
@@ -133,6 +146,24 @@ export default function Features() {
             WebkitOverflowScrolling: 'touch'
           }}
         >
+          {/* Added heading section */}
+          <div className="px-4 pb-[10vh]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center md:text-left"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent mb-4">
+                Meet Your AI Companion
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
+                Discover the future of home automation and personal assistance with our advanced AI robot. 
+                Packed with cutting-edge features designed to make your life easier and more connected.
+              </p>
+            </motion.div>
+          </div>
+
           <div className="space-y-[10vh]">
             {features.map((feature, index) => (
               <div 
@@ -207,6 +238,7 @@ export default function Features() {
           </div>
         </div>
       </div>
+    </section>
     </section>
   )
 }
