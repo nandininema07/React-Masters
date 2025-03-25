@@ -103,7 +103,7 @@ export default function AboutPage() {
       {/* Story Section */}
       <section className="py-16 bg-transparent">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
+          <div className="flex flex-col md:flex-row text-2xl items-center">
             <div className="w-full md:w-1/2 mb-10 md:mb-0 md:pr-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
@@ -119,6 +119,7 @@ export default function AboutPage() {
                 Today, we're proud to have our robots in thousands of homes worldwide, helping families, elderly
                 individuals, and busy professionals live better, more connected lives.
               </p>
+             
             </div>
             <div className="w-full md:w-1/2">
               <div className="grid grid-cols-2 gap-4">
@@ -136,7 +137,7 @@ export default function AboutPage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
+                <div className="aspect-square bg-gray-100 col-span-2 h-80 items-center justify-center mx-auto dark:bg-gray-700 rounded-lg overflow-hidden">
                   <img
                     src="/assets/Nandini.jpg"
                     alt="Nandini"

@@ -70,7 +70,7 @@ export default function Impact() {
                   y: -5,
                   boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
                 }}
-                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg h-full"
+                className="bg-white/80 dark:bg-gray-800/80 dark:text-white/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg h-full"
               >
                 <motion.div 
                   className={`h-2 bg-gradient-to-r ${card.color}`}
@@ -82,7 +82,7 @@ export default function Impact() {
                 />
                 <div className="p-6">
                   <motion.div
-                    className={`w-14 h-14 rounded-full bg-gradient-to-r mb-6 flex items-center justify-center text-white shadow-xl mx-auto md:mx-0 md:mb-8 lg:mb-6 lg:mx-auto xl:mx-0 xl:mb-8 2xl:mx-auto ${card.color}`}
+                    className={`w-14 h-14 rounded-full bg-gradient-to-r mb-6 dark:text-white/80 flex items-center justify-center text-white shadow-xl mx-auto md:mx-0 md:mb-8 lg:mb-6 lg:mx-auto xl:mx-0 xl:mb-8 2xl:mx-auto ${card.color}`}
                     whileHover={{
                       scale: 1.1,
                       rotate: 5,
@@ -95,14 +95,14 @@ export default function Impact() {
                     <card.icon className="w-7 h-7" color="purple" />
                   </motion.div>
                   <motion.h3 
-                    className="text-xl text-gray-600 font-semibold mb-3 text-center md:text-left lg:text-center xl:text-left 2xl:text-center"
+                    className="text-xl text-gray-600 font-semibold mb-3 dark:text-white/80 text-center md:text-left lg:text-center xl:text-left 2xl:text-center"
                     whileHover={{ color: "#7c3aed" }}
                     transition={{ duration: 0.2 }}
                   >
                     {card.title}
                   </motion.h3>
                   <motion.p 
-                    className="text-gray-600 dark:text-gray-300 text-center md:text-left lg:text-center xl:text-left 2xl:text-center"
+                    className="text-gray-600 dark:text-gray-300 text-center dark:text-white/80 md:text-left lg:text-center xl:text-left 2xl:text-center"
                     whileHover={{ color: "#4f46e5" }}
                     transition={{ duration: 0.2 }}
                   >
