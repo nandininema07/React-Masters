@@ -17,7 +17,7 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row items-center">
             <div className="w-full md:w-1/2 mb-10 md:mb-0">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                About <span className="text-primary">RoboHelp</span>
+                About <span className="text-primary">FamBot</span>
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg">
                 We're on a mission to transform everyday living through intelligent robotics that understand, adapt, and
@@ -39,7 +39,7 @@ export default function AboutPage() {
               <div className="relative w-full max-w-md aspect-square rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
                 <img
                   src="/assets/BLUEBOT.png"
-                  alt="RoboHelp Robot"
+                  alt="FamBot Robot"
                   className="w-3/4 h-3/4 object-contain"
                 />
               </div>
@@ -107,7 +107,7 @@ export default function AboutPage() {
             <div className="w-full md:w-1/2 mb-10 md:mb-0 md:pr-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Founded in 2020, RoboHelp began with a simple idea: what if home robots could truly understand and
+                Founded in 2020, FamBot began with a simple idea: what if home robots could truly understand and
                 anticipate human needs?
               </p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
@@ -156,7 +156,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Home?</h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
-            Join thousands of satisfied customers who have made RoboHelp an essential part of their daily lives.
+            Join thousands of satisfied customers who have made FamBot an essential part of their daily lives.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/comparison">

@@ -118,7 +118,7 @@ export default function Features() {
         <div className="w-full md:w-1/2 h-[40vh] md:h-full md:sticky top-0 flex items-center justify-center">
           <div className="w-full h-full max-h-[400px] md:max-h-[600px]">
             <Spline
-              scene="https://prod.spline.design/5DkTahr1wvN0BRIr/scene.splinecode"
+              scene="https://prod.spline.design/q0WK9SIpRBytluWm/scene.splinecode"
               className="w-full h-full"
             />
           </div>

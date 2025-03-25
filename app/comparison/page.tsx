@@ -7,7 +7,7 @@ import Footer from "@/components/footer"
 export default function ComparisonPage() {
   const models = [
     {
-      name: "RoboHelp Basic",
+      name: "FamBot Basic",
       price: "$999",
       description: "Perfect for individuals and small families",
       features: {
@@ -26,7 +26,7 @@ export default function ComparisonPage() {
       },
     },
     {
-      name: "RoboHelp Pro",
+      name: "FamBot Pro",
       price: "$1,499",
       description: "Ideal for families and tech enthusiasts",
       features: {
@@ -46,7 +46,7 @@ export default function ComparisonPage() {
       highlighted: true,
     },
     {
-      name: "RoboHelp Ultimate",
+      name: "FamBot Ultimate",
       price: "$1,999",
       description: "Complete solution for smart homes",
       features: {
@@ -71,7 +71,7 @@ export default function ComparisonPage() {
       <Navbar />
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Perfect RoboHelp</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Perfect FamBot</h1>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Compare our models to find the one that best fits your needs and lifestyle.
           </p>
@@ -88,11 +88,11 @@ export default function ComparisonPage() {
               } bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm`}
             >
               {model.highlighted && (
-                <div className="absolute top-0 left-0 right-0 bg-primary text-white text-center py-1 text-sm font-medium">
+                <div className="absolute top-0 left-0 right-0 bg-primary text-white text-center py-2 text-sm font-medium">
                   Most Popular
                 </div>
               )}
-              <div className="p-6">
+              <div className="p-6 pt-9">
                 <h2 className="text-2xl font-bold mb-2">{model.name}</h2>
                 <div className="text-3xl font-bold mb-2 text-primary">{model.price}</div>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">{model.description}</p>
