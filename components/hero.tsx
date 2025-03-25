@@ -11,7 +11,7 @@ const SplineModel = () => {
   return (
     <div className="w-full h-full">
       <Spline 
-        scene="https://prod.spline.design/5DkTahr1wvN0BRIr/scene.splinecode"
+        scene="https://prod.spline.design/pXMX-2J6UH3bSWFP/scene.splinecode"
         className="w-full h-full"
       />
     </div>
@@ -87,7 +87,7 @@ export default function Hero() {
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={currentHighlight}
-                    className="text-5xl md:text-6xl lg:text-7xl mx-5 py-3 block"
+                    className="text-5xl md:text-6xl lg:text-7xl py-3 block"
                     style={{
                       background: "linear-gradient(to right, #4568DC, #B06AB3)",
                       WebkitBackgroundClip: "text",
@@ -144,7 +144,7 @@ export default function Hero() {
 
         {/* Spline Model Container */}
         <motion.div 
-          className="w-full md:w-1/2 h-[400px] md:h-[500px] relative"
+          className="w-full md:w-1/2 h-[400px] md:h-[500px] relative -mt-10"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
